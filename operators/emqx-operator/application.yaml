@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: emqx-operator
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1" # INSTALL AFTER
+spec:
+  project: default
+  source:
+    repoURL: https://repos.emqx.io/charts
+    chart: emqx-operator
+    targetRevision: "*"
+    helm:
+      valueFiles:
+        - values.yaml
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: emqx-operator-system
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
