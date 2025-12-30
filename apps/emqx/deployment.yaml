@@ -1,9 +1,10 @@
 apiVersion: apps.emqx.io/v2beta1
 kind: EMQX
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
   name: emqx
-Spec:
+  namespace: default
+spec:
   image: "emqx/emqx-enterprise:latest"
   imagePullPolicy: IfNotPresent
-  specs:
-    replicas: 2
