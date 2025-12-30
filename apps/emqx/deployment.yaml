@@ -1,0 +1,9 @@
+apiVersion: apps.emqx.io/v2beta1
+kind: EMQX
+metadata:
+  name: emqx
+Spec:
+  image: "emqx/emqx-enterprise:latest"
+  imagePullPolicy: IfNotPresent
+  specs:
+    replicas: 2
